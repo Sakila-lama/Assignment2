@@ -1,4 +1,4 @@
-package com.example.assignment2;
+package exercisedbfx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

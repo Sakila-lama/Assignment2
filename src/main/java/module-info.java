@@ -1,8 +1,12 @@
-module com.example.assignment2 {
+module com.example.exercisedbfx {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.net.http;
+    requires com.google.gson;
 
-
-    opens com.example.assignment2 to javafx.fxml;
-    exports com.example.assignment2;
+    exports exercisedbfx;
+    opens exercisedbfx to javafx.fxml;
+    exports exercisedbfx.controller;
+    opens exercisedbfx.controller to javafx.fxml;
+    opens exercisedbfx.model to com.google.gson;
 }
