@@ -56,6 +56,7 @@ public class GeneralViewController implements Initializable, ExerciseLoader {
         loadExerciseByBodyPart(current.getBodyPart());
         cmbBoxBodyParts.getSelectionModel().select(current.getBodyPart());
         listView.getSelectionModel().select(current);
+        listView.scrollTo(current);
     }
 
     private void loadExerciseByBodyPart(String bodyPart) {
@@ -63,6 +64,7 @@ public class GeneralViewController implements Initializable, ExerciseLoader {
         ObservableList<ShortExerciseDescription> list =
                 FXCollections.observableList(exercises);
         listView.setItems(list);
+        listView.scrollTo(0);
         statusLabel.setText("Exercises found: " + list.size());
     }
 }
