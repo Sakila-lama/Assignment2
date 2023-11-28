@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exercisedbfx.controller.GeneralViewController">
+    <children>
+        <Label contentDisplay="CENTER" layoutX="223.0" layoutY="26.0" styleClass="top-label" text="Exercise explorer">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label contentDisplay="CENTER" layoutX="14.0" layoutY="101.0" text="Body part name:" />
+        <ComboBox fx:id="cmbBoxBodyParts" layoutX="188.0" layoutY="97.0" prefHeight="25.0" prefWidth="178.0" promptText="Select a body part" />
+        <Button fx:id="btnGetInfo" layoutX="436.0" layoutY="97.0" mnemonicParsing="false" onAction="#getExerciseList" prefHeight="25.0" prefWidth="130.0" text="Get Exercise Info" />
+        <ListView fx:id="listView" layoutX="14.0" layoutY="173.0" onMouseClicked="#switchToDetails" prefHeight="356.0" prefWidth="575.0" />
+        <Label fx:id="statusLabel" contentDisplay="CENTER" layoutX="14.0" layoutY="543.0" prefHeight="20.0" prefWidth="189.0" text="Exercises found:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+      <Label contentDisplay="CENTER" layoutX="14.0" layoutY="144.0" prefHeight="20.0" prefWidth="276.0" text="Click on exercise to get the details">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

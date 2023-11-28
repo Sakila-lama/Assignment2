@@ -1,0 +1,45 @@
+.root {
+    -fx-font-family: Verdana;
+    -fx-background-image: url("images/background.jpg");
+    -fx-background-size: cover;
+}
+
+.list-view {
+    -fx-background-radius: 20px;
+}
+
+.combo-box{
+    -fx-background-radius: 20px;
+}
+
+.label {
+    -fx-text-fill: #00c0ff;
+    -fx-font: bold 10pt Verdana;
+}
+
+#capture {
+    -fx-fill: white;
+    -fx-font: bold 16pt "Comic Sans MS", "Comic Sans", cursive;
+}
+
+#desc {
+    -fx-fill: white;
+    -fx-font: bold 10pt Verdana;
+}
+
+.imageview {
+    -fx-border-radius: 5px;
+    -fx-border-width: 5;
+    -fx-border-color: rgba(0, 0, 0, 0.82);
+}
+
+/* Style for the top label in the TableView window */
+.top-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-effect: dropshadow(one-pass-box , #312d95, 8 , 0.0 , 2 , 0 );
+    -fx-background-radius: 5px;
+}

@@ -9,9 +9,10 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ApiUtil {
+public class APIUtility {
     private static final String API_URI = "https://exercisedb.p.rapidapi.com/exercises/";
     private static final String API_BODY_PART = "bodyPart/";
     private static final String API_EXERCISE = "exercise/";
@@ -22,6 +23,11 @@ public class ApiUtil {
 
     // Returns a list of short descriptions of the exercise by specified body part
     public static List<ShortExerciseDescription> getExercisesByBodyPart(String bodyPart) {
+        if (bodyPart == null) {
+            return new ArrayList<>();
+        }
+        // Replaces space character with "%20" URL encode
+        bodyPart = bodyPart.replace(" ", "%20");
         // Creates a URI
         String uri = API_URI + API_BODY_PART + bodyPart + API_LIMIT;
         // Gets an HTTP request
@@ -31,7 +37,8 @@ public class ApiUtil {
             HttpResponse<String> response = HttpClient.newHttpClient().send(request,
                     HttpResponse.BodyHandlers.ofString());
             // Creates a TypeToken to parse a list of ShortExerciseDescription objects
-            TypeToken<List<ShortExerciseDescription>> token = new TypeToken<>(){};
+            TypeToken<List<ShortExerciseDescription>> token = new TypeToken<>() {
+            };
             // Creates a new Gson object
             Gson gson = new Gson();
             // Returns a list of ShortExerciseDescription objects
@@ -73,7 +80,8 @@ public class ApiUtil {
             HttpResponse<String> response = HttpClient.newHttpClient().send(request,
                     HttpResponse.BodyHandlers.ofString());
             // Creates a TypeToken to parse a list of ShortExerciseDescription objects
-            TypeToken<List<String>> token = new TypeToken<>(){};
+            TypeToken<List<String>> token = new TypeToken<>() {
+            };
             // Creates a new Gson object
             Gson gson = new Gson();
             // Returns a list of ShortExerciseDescription objects
@@ -97,7 +105,7 @@ public class ApiUtil {
     }
 
     public static void main(String[] args) {
-        // Test ApiUtil class
+        // Test APIUtility class
         List<ShortExerciseDescription> back = getExercisesByBodyPart("back");
         back.forEach(System.out::println);
         System.out.println("Exercise id 0001");
