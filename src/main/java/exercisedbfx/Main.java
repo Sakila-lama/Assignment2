@@ -4,9 +4,6 @@ import exercisedbfx.service.SceneChanger;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
- * Main class contains main method - entry point of the application
- */
 public class Main extends Application {
     public static void main(String[] args) {
         launch();

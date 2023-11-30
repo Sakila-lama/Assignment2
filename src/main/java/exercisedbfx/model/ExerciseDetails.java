@@ -2,9 +2,7 @@ package exercisedbfx.model;
 
 import java.util.List;
 
-/**
- * Class represents a full description of the Exercise.
- */
+
 public class ExerciseDetails {
     private String id; // an exercise id
     private String name; // an exercise name

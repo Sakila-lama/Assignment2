@@ -17,10 +17,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
-/**
- * Controller class for the GeneralView.fxml, responsible for displaying a list of exercises
- * based on selected body parts and navigating to the DetailedView for more information.
- */
 public class GeneralViewController implements Initializable, ExerciseLoader {
     private Exercise current;
     @FXML
@@ -86,11 +82,8 @@ public class GeneralViewController implements Initializable, ExerciseLoader {
     public void loadExercise(Exercise current) {
         // Sets the current exercise
         this.current = current;
-        // Loads exercises from the API
         loadExerciseByBodyPart(current.getBodyPart());
-        // Selects the value in a ComboBox
         cmbBoxBodyParts.getSelectionModel().select(current.getBodyPart());
-        // Selects the current exercise and scroll down to this exercise
         listView.getSelectionModel().select(current);
         listView.scrollTo(current);
     }
