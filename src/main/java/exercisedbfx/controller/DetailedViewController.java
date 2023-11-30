@@ -14,10 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-/**
- * Controller class for the DetailedView.fxml, responsible for displaying detailed information
- * about a selected exercise.
- */
 public class DetailedViewController implements ExerciseLoader {
     // stores the current selected item from the GeneralView
     private Exercise current;
