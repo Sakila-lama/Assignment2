@@ -2,18 +2,20 @@ package exercisedbfx.model;
 
 import java.util.List;
 
-// Class represents a fill description of the Exercise
-public class FullExerciseDescription {
-    private String id;
-    private String name;
-    private String bodyPart;
-    private String target;
-    private String equipment;
-    private String gifUrl;
-    private List<String> secondaryMuscles;
-    private List<String> instructions;
+/**
+ * Class represents a full description of the Exercise.
+ */
+public class ExerciseDetails {
+    private String id; // an exercise id
+    private String name; // an exercise name
+    private String bodyPart; // a body part to be trained by this exercise
+    private String target; // a target muscle to be trained
+    private String equipment; // the equipment required for the exercise
+    private String gifUrl; // the URL of the GIF for the exercise
+    private List<String> secondaryMuscles; // the list of secondary muscles involved in the exercise
+    private List<String> instructions; //  the list of instructions for the exercise
 
-    public FullExerciseDescription() {
+    public ExerciseDetails() {
     }
 
     public String getId() {

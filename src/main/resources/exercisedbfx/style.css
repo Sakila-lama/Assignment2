@@ -8,6 +8,10 @@
     -fx-background-radius: 20px;
 }
 
+.list-cell, .list-cell:focused {
+    -fx-background-radius: 10;
+}
+
 .combo-box{
     -fx-background-radius: 20px;
 }
@@ -27,16 +31,20 @@
     -fx-font: bold 10pt Verdana;
 }
 
+.text-area, .text-area .viewport, .text-area .content {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font: bold 10pt Verdana;
+}
+
 .imageview {
     -fx-border-radius: 5px;
     -fx-border-width: 5;
     -fx-border-color: rgba(0, 0, 0, 0.82);
 }
 
-/* Style for the top label in the TableView window */
 .top-label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
+    -fx-font: bold 16pt "Comic Sans MS", "Comic Sans", cursive;
 }
 
 .button {

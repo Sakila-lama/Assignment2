@@ -2,8 +2,8 @@ package exercisedbfx.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import exercisedbfx.model.FullExerciseDescription;
-import exercisedbfx.model.ShortExerciseDescription;
+import exercisedbfx.model.Exercise;
+import exercisedbfx.model.ExerciseDetails;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -12,17 +12,30 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class for interacting with an external exercise database API.
+ */
 public class APIUtility {
+    // Base URI for the exercise database API
     private static final String API_URI = "https://exercisedb.p.rapidapi.com/exercises/";
+    // URI path segments for different API endpoints
     private static final String API_BODY_PART = "bodyPart/";
     private static final String API_EXERCISE = "exercise/";
     private static final String API_ALL_BODY_PARTS = "bodyPartList";
+    // Query parameter to limit the number of results in API responses
     private static final String API_LIMIT = "?limit=500";
-    private static final String API_KEY = "824ce5210fmsh35ec2c39dafe920p133e73jsneccad937d7dc";
+    // API key for accessing the RapidAPI service
+    private static final String API_KEY = "0f610d4467mshbc888a46be29965p144ce3jsn1f17ada7a579";
+    // Hostname for the RapidAPI service
     private static final String API_HOST = "exercisedb.p.rapidapi.com";
 
-    // Returns a list of short descriptions of the exercise by specified body part
-    public static List<ShortExerciseDescription> getExercisesByBodyPart(String bodyPart) {
+    /**
+     * Retrieves a list of exercises based on the specified body part.
+     *
+     * @param bodyPart the body part for which to retrieve exercises.
+     * @return a list of Exercise objects.
+     */
+    public static List<Exercise> getExercisesByBodyPart(String bodyPart) {
         if (bodyPart == null) {
             return new ArrayList<>();
         }
@@ -36,12 +49,12 @@ public class APIUtility {
             // Sends a request and retrieve a response
             HttpResponse<String> response = HttpClient.newHttpClient().send(request,
                     HttpResponse.BodyHandlers.ofString());
-            // Creates a TypeToken to parse a list of ShortExerciseDescription objects
-            TypeToken<List<ShortExerciseDescription>> token = new TypeToken<>() {
+            // Creates a TypeToken to parse a list of Exercise objects
+            TypeToken<List<Exercise>> token = new TypeToken<>() {
             };
             // Creates a new Gson object
             Gson gson = new Gson();
-            // Returns a list of ShortExerciseDescription objects
+            // Returns a list of Exercise objects
             return gson.fromJson(response.body(), token);
         } catch (IOException | InterruptedException e) {
             // Throws an exception if an error occurs.
@@ -50,8 +63,13 @@ public class APIUtility {
         }
     }
 
-    // Returns a full description of specified exercise by id
-    public static FullExerciseDescription getFullDescriptionById(String id) {
+    /**
+     * Retrieves details of an exercise based on the specified exercise ID.
+     *
+     * @param id the ID of the exercise for which to retrieve details.
+     * @return an ExerciseDetails object.
+     */
+    public static ExerciseDetails getExerciseDetailsById(String id) {
         // Creates a URI
         String uri = API_URI + API_EXERCISE + id;
         // Gets an HTTP request
@@ -62,8 +80,8 @@ public class APIUtility {
                     HttpResponse.BodyHandlers.ofString());
             // Creates a new Gson object
             Gson gson = new Gson();
-            // Returns a FullExerciseDescription object
-            return gson.fromJson(response.body(), FullExerciseDescription.class);
+            // Returns a ExerciseDetails object
+            return gson.fromJson(response.body(), ExerciseDetails.class);
         } catch (IOException | InterruptedException e) {
             // Throws an exception if an error occurs.
             throw new RuntimeException("An error occurs while connecting to the API."
@@ -71,7 +89,11 @@ public class APIUtility {
         }
     }
 
-    // Returns a list of all body parts
+    /**
+     * Retrieves a list of all body parts available in the exercise database.
+     *
+     * @return a list of body parts.
+     */
     public static List<String> getBodyParts() {
         // Gets an HTTP request
         HttpRequest request = getHttpRequest(API_URI + API_ALL_BODY_PARTS);
@@ -79,12 +101,12 @@ public class APIUtility {
             // Sends a request and retrieve a response
             HttpResponse<String> response = HttpClient.newHttpClient().send(request,
                     HttpResponse.BodyHandlers.ofString());
-            // Creates a TypeToken to parse a list of ShortExerciseDescription objects
+            // Creates a TypeToken to parse a list of String objects
             TypeToken<List<String>> token = new TypeToken<>() {
             };
             // Creates a new Gson object
             Gson gson = new Gson();
-            // Returns a list of ShortExerciseDescription objects
+            // Returns a list of Exercise objects
             return gson.fromJson(response.body(), token);
         } catch (IOException | InterruptedException e) {
             // Throws an exception if an error occurs.
@@ -93,7 +115,12 @@ public class APIUtility {
         }
     }
 
-    // Returns an HTTP request based on the passed uri
+    /**
+     * Builds and returns an HTTP request with necessary headers.
+     *
+     * @param uri the URI for the request.
+     * @return an HttpRequest object.
+     */
     private static HttpRequest getHttpRequest(String uri) {
         // Builds an HTTP request
         return HttpRequest.newBuilder()
@@ -104,12 +131,17 @@ public class APIUtility {
                 .build();
     }
 
+    /**
+     * Main method for testing the APIUtility class.
+     *
+     * @param args the command line arguments.
+     */
     public static void main(String[] args) {
         // Test APIUtility class
-        List<ShortExerciseDescription> back = getExercisesByBodyPart("back");
+        List<Exercise> back = getExercisesByBodyPart("back");
         back.forEach(System.out::println);
         System.out.println("Exercise id 0001");
-        System.out.println(getFullDescriptionById("0001"));
+        System.out.println(getExerciseDetailsById("0001"));
         System.out.println("List of the body parts:");
         getBodyParts().forEach(System.out::println);
     }
